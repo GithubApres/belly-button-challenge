@@ -128,17 +128,8 @@ d3.selectAll('#selDataset').on("change", function() {
 });
 
 
-function nextChoice(selected) {
-
-    hbarchart(selected);
-    bubblechart(selected);
-
-};
 
 
-    //hbarchart(d3.select("#selDataset").property("value"));
-    //bubblechart(d3.select("#selDataset").property("value"));
-        
 
 
 
