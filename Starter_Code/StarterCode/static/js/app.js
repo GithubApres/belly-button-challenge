@@ -94,8 +94,37 @@ function bubblechart (bbPerson) {
 }
 
 
-hbarchart(941);
-bubblechart(941);
+// create the drop down selection at startup
+
+selection();
+
+function selection(){
+    
+    let dropMenu = d3.selectAll("#selDataset");
+    // open Json file and read into memory
+    d3.json(dataSet).then(bbsamples  => {
+        console.log(bbsamples) ;
+        let sample_names = bbsamples.names;
+        sample_names.forEach((name)=>{
+            dropMenu.append('option').text(name).property('value',name);
+        });
+
+        firstChoice = sample_names[0];
+        hbarchart(firstChoice);
+        bubblechart(firstChoice);
+    })
+
+    
+    
+
+    //hbarchart(d3.select("#selDataset").property("value"));
+    //bubblechart(d3.select("#selDataset").property("value"));
+        
+
+};
+
+
+
        
         
         
