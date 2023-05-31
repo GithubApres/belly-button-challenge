@@ -114,14 +114,33 @@ function selection(){
         bubblechart(firstChoice);
     })
 
-    
-    
+};   
+
+d3.selectAll('#selDataset').on("change", function() {
+
+    let SelectionChoice = d3.select("#selDataset").property("value")
+    console.log ("printing selectionChoice");
+    console.log (SelectionChoice);
+
+    hbarchart(SelectionChoice);
+    bubblechart(SelectionChoice);
+
+});
+
+
+function nextChoice(selected) {
+
+    hbarchart(selected);
+    bubblechart(selected);
+
+};
+
 
     //hbarchart(d3.select("#selDataset").property("value"));
     //bubblechart(d3.select("#selDataset").property("value"));
         
 
-};
+
 
 
 
