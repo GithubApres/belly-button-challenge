@@ -7,8 +7,8 @@ var dataSet = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroo
 function hbarchart (bbPerson) {
     // open Json file and read into memory
     d3.json(dataSet).then(bbsamples  => {
-        console.log("printing bbsamples")
-        console.log(bbsamples) ;
+        //console.log("printing bbsamples")
+        //console.log(bbsamples) ;
 
         let sample_values = [];      // values for h-bar chart
         let otu_ids = [];            // labels for h-bar chart
@@ -60,7 +60,7 @@ function hbarchart (bbPerson) {
 function bubblechart (bbPerson) {
     // open Json file and read into memory
     d3.json(dataSet).then(bbsamples  => {
-        console.log(bbsamples) ;
+        //console.log(bbsamples) ;
 
         let bubblechoice = bbsamples.samples.filter(result => result.id == bbPerson)
 
@@ -94,6 +94,35 @@ function bubblechart (bbPerson) {
 }
 
 
+function mdata (bbPerson) {
+    // open Json file and read into memory
+    d3.json(dataSet).then(bbsamples  => {
+        console.log ("-------------------------"+ bbPerson);
+        console.log(bbsamples) ;
+        // create empty #sample-metadata 
+        d3.select("#sample-metadata").text("");
+
+        let md = [];
+        md = bbsamples.metadata;
+        console.log ("::::::::::::::::::" + md);
+
+        let searchArray = md.filter(result => result.id == bbPerson);
+        
+        console.log("**************")
+        console.log("name = " + searchArray[0].id);
+               
+        Object.entries(searchArray[0]).forEach(([key, value]) => {
+            d3.select(".panel-body")
+                .append("h5")
+                .text(`${key}: ${value}`);
+
+            console.log(`Key: ${key}, Value: ${value}`)
+        })
+    }
+)};
+
+
+
 // create the drop down selection at startup
 
 selection();
@@ -103,7 +132,7 @@ function selection(){
     let dropMenu = d3.selectAll("#selDataset");
     // open Json file and read into memory
     d3.json(dataSet).then(bbsamples  => {
-        console.log(bbsamples) ;
+        //console.log(bbsamples) ;
         let sample_names = bbsamples.names;
         sample_names.forEach((name)=>{
             dropMenu.append('option').text(name).property('value',name);
@@ -112,6 +141,7 @@ function selection(){
         firstChoice = sample_names[0];
         hbarchart(firstChoice);
         bubblechart(firstChoice);
+        mdata(firstChoice);
     })
 
 };   
@@ -119,11 +149,12 @@ function selection(){
 d3.selectAll('#selDataset').on("change", function() {
 
     let SelectionChoice = d3.select("#selDataset").property("value")
-    console.log ("printing selectionChoice");
-    console.log (SelectionChoice);
+    //console.log ("printing selectionChoice");
+    //console.log (SelectionChoice);
 
     hbarchart(SelectionChoice);
     bubblechart(SelectionChoice);
+    mdata(SelectionChoice);
 
 });
 
