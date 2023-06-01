@@ -97,7 +97,7 @@ function bubblechart (bbPerson) {
 function mdata (bbPerson) {
     // open Json file and read into memory
     d3.json(dataSet).then(bbsamples  => {
-        console.log ("-------------------------"+ bbPerson);
+        console.log ("------------------------------"+ bbPerson);
         console.log(bbsamples) ;
         // create empty #sample-metadata 
         d3.select("#sample-metadata").text("");
@@ -159,15 +159,5 @@ d3.selectAll('#selDataset').on("change", function() {
 });
 
 
-
-
-
-
-
-
-
-       
-        
-        
    
 
