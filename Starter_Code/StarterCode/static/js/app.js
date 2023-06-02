@@ -2,8 +2,6 @@
 var dataSet = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
 
 
-
-
 function hbarchart (bbPerson) {
     // open Json file and read into memory
     d3.json(dataSet).then(bbsamples  => {
@@ -47,11 +45,11 @@ function hbarchart (bbPerson) {
         let data = [trace1];
 
         let layout = {
-             title : "Displayed are top 10 OTUs for individual "+bbPerson
+             title: "Displayed are top 10 OTUs for individual "+bbPerson
         };
 
         // create horizontal bar chart
-        Plotly.newPlot("bar", data);
+        Plotly.newPlot("bar", data, layout);
 
     })
 }
@@ -102,8 +100,8 @@ function mdata (bbPerson) {
         // create empty #sample-metadata 
         d3.select("#sample-metadata").text("");
 
-        let md = [];
-        md = bbsamples.metadata;
+        
+        let md = bbsamples.metadata;
         console.log ("::::::::::::::::::" + md);
 
         let searchArray = md.filter(result => result.id == bbPerson);
